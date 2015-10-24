@@ -5,6 +5,11 @@
  */
 package OrderPlacingAndManifesting;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +24,11 @@ public class CancelOrderView extends javax.swing.JFrame {
     public CancelOrderView() {
         setVisible(true);
         initComponents();
+        try {
+            PopulateComboBox();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -30,80 +40,452 @@ public class CancelOrderView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField("",20);
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Lbl2 = new javax.swing.JLabel();
+        OrderNumberTF = new javax.swing.JTextField("",20);
+        ReturnBtn = new javax.swing.JButton();
+        CancelBtn = new javax.swing.JButton();
+        Lbl3 = new javax.swing.JLabel();
+        Lbl4 = new javax.swing.JLabel();
+        OrderNumberCBox = new javax.swing.JComboBox();
+        Lbl1 = new javax.swing.JLabel();
+        SearchBtn = new javax.swing.JButton();
+        Lbl5 = new javax.swing.JLabel();
+        Lbl6 = new javax.swing.JLabel();
+        Lbl7 = new javax.swing.JLabel();
+        Lbl8 = new javax.swing.JLabel();
+        GoBtn = new javax.swing.JButton();
+        NameTF = new javax.swing.JTextField();
+        AddressTF = new javax.swing.JTextField();
+        SourceCityTF = new javax.swing.JTextField();
+        DestinationCityTF = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        Lbl9 = new javax.swing.JLabel();
+        ProductNameTF = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OCM");
-        setMinimumSize(new java.awt.Dimension(400, 300));
+        setLocation(new java.awt.Point(300, 100));
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
-        jLabel1.setText("Enter Order Number");
+        Lbl2.setText("Enter Order Number");
 
-        jTextField1.setText("");
+        OrderNumberTF.setText("");
 
-        jButton1.setText("Return");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ReturnBtn.setText("Return");
+        ReturnBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                ReturnBtnMouseClicked(evt);
+            }
+        });
+        ReturnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReturnBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel Order");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        CancelBtn.setText("Cancel Order");
+        CancelBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                CancelBtnMouseClicked(evt);
             }
         });
+        CancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBtnActionPerformed(evt);
+            }
+        });
+
+        Lbl3.setText("OR");
+
+        Lbl4.setText("Choose Order To Cancel");
+
+        OrderNumberCBox.setModel(new javax.swing.DefaultComboBoxModel());
+        OrderNumberCBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderNumberCBoxActionPerformed(evt);
+            }
+        });
+
+        Lbl1.setText("If You Know The Order Number");
+
+        SearchBtn.setText("Search");
+        SearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBtnActionPerformed(evt);
+            }
+        });
+
+        Lbl5.setText("Name");
+
+        Lbl6.setText("Address");
+
+        Lbl7.setText("Source City");
+
+        Lbl8.setText("Destination City");
+
+        GoBtn.setText("Go");
+        GoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBtnActionPerformed(evt);
+            }
+        });
+
+        NameTF.setEditable(false);
+
+        AddressTF.setEditable(false);
+
+        SourceCityTF.setEditable(false);
+
+        DestinationCityTF.setEditable(false);
+
+        Lbl9.setText("Product");
+
+        ProductNameTF.setEditable(false);
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Cancel Order");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Back");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Exit");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Lbl4)
+                                .addGap(18, 18, 18)
+                                .addComponent(OrderNumberCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Lbl2)
+                                .addGap(18, 18, 18)
+                                .addComponent(OrderNumberTF)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(GoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SearchBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Lbl7)
+                        .addGap(18, 18, 18)
+                        .addComponent(SourceCityTF))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Lbl5)
+                        .addGap(18, 18, 18)
+                        .addComponent(NameTF))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(217, Short.MAX_VALUE))
+                        .addComponent(Lbl6)
+                        .addGap(18, 18, 18)
+                        .addComponent(AddressTF))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 152, Short.MAX_VALUE)
+                        .addComponent(ReturnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lbl8)
+                        .addGap(18, 18, 18)
+                        .addComponent(DestinationCityTF))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lbl1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(Lbl3)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lbl9)
+                        .addGap(18, 18, 18)
+                        .addComponent(ProductNameTF)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(Lbl1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Lbl2)
+                    .addComponent(OrderNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchBtn))
+                .addGap(18, 18, 18)
+                .addComponent(Lbl3)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl4)
+                    .addComponent(OrderNumberCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GoBtn))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(240, Short.MAX_VALUE))
+                    .addComponent(Lbl5)
+                    .addComponent(NameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl6)
+                    .addComponent(AddressTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl7)
+                    .addComponent(SourceCityTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl8)
+                    .addComponent(DestinationCityTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl9)
+                    .addComponent(ProductNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CancelBtn)
+                    .addComponent(ReturnBtn))
+                .addGap(18, 18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-       
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void CancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelBtnMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    }//GEN-LAST:event_CancelBtnMouseClicked
+
+    private void ReturnBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReturnBtnMouseClicked
         dispose();
         new MainView();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_ReturnBtnMouseClicked
+
+    private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
+        try {
+            DeleteOrder(OrderToCancel);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_CancelBtnActionPerformed
+
+    private void ReturnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReturnBtnActionPerformed
+
+    private void OrderNumberCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderNumberCBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrderNumberCBoxActionPerformed
+
+    private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
+
+        OrderNumberTF_Text = OrderNumberTF.getText();
+        String OrderNumberTF_Text_Error = "ERROR : Order Number Cannot Be Left Empty";
+        if (OrderNumberTF_Text.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, OrderNumberTF_Text_Error);
+        } else {
+            try {
+                result = CancelOrder(OrderNumberTF_Text);
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }//GEN-LAST:event_SearchBtnActionPerformed
+
+    private void GoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBtnActionPerformed
+        OrderNumberTF_Text = OrderNumberCBox.getSelectedItem().toString();
+        try {
+            CancelOrder(OrderNumberTF_Text);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_GoBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField AddressTF;
+    private javax.swing.JButton CancelBtn;
+    private javax.swing.JTextField DestinationCityTF;
+    private javax.swing.JButton GoBtn;
+    private javax.swing.JLabel Lbl1;
+    private javax.swing.JLabel Lbl2;
+    private javax.swing.JLabel Lbl3;
+    private javax.swing.JLabel Lbl4;
+    private javax.swing.JLabel Lbl5;
+    private javax.swing.JLabel Lbl6;
+    private javax.swing.JLabel Lbl7;
+    private javax.swing.JLabel Lbl8;
+    private javax.swing.JLabel Lbl9;
+    private javax.swing.JTextField NameTF;
+    private javax.swing.JComboBox OrderNumberCBox;
+    private javax.swing.JTextField OrderNumberTF;
+    private javax.swing.JTextField ProductNameTF;
+    private javax.swing.JButton ReturnBtn;
+    private javax.swing.JButton SearchBtn;
+    private javax.swing.JTextField SourceCityTF;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+    private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_USER = "is020";
+    private static final String DB_PASSWORD = "is020";
+    private String OrderNumberTF_Text = "";
+    private boolean result = false;
+    private String Name = "", Addr = "", PCity = "", DCity = "", PName = "";
+    private String OrderToCancel = "";
+
+    private void PopulateComboBox() throws SQLException {
+        OrderNumberCBox.removeAllItems();
+        Connection dbConnection = null;
+        Statement statement = null;
+        String selectTableSQL1 = "select order_id from consignment";
+        try {
+            dbConnection = getDBConnection();
+            System.out.println("Connection Successful. Populating Combo Box.");
+            statement = dbConnection.createStatement();
+            System.out.println(selectTableSQL1);
+            ResultSet rs = statement.executeQuery(selectTableSQL1);
+            if (rs.next() == false) {
+
+                String ERR = "ERROR : No Order To Cancel.";
+                JOptionPane.showMessageDialog(rootPane, ERR);
+                dispose();
+                new MainView();
+            } else {
+                rs = statement.executeQuery(selectTableSQL1);
+                while (rs.next()) {
+                    OrderNumberCBox.addItem(rs.getString(1));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+    }
+
+    private boolean CancelOrder(String OrderNumberTF_Text) throws SQLException {
+        Connection dbConnection = null;
+        Statement statement = null;
+        ResultSet rs;
+        String SelectTableSQL = "select first_name,last_name,address,pickup_city,destination_city,product_name from consignment where order_id = '"
+                + OrderNumberTF_Text + "'";
+
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            System.out.println(SelectTableSQL);
+            rs = statement.executeQuery(SelectTableSQL);
+            String ERR = "";
+            if (rs.next() == false) {
+                ERR = "ERROR : Order Number Not Found. Please Re-Enter Order Number Or Select From Drop-Down Menu.";
+                OrderNumberTF.setText(null);
+            } else {
+                rs = statement.executeQuery(SelectTableSQL);
+                while (rs.next()) {
+                    OrderToCancel = OrderNumberTF_Text;
+                    Name = rs.getString(1) + rs.getString(2);
+                    Addr = rs.getString(3);
+                    PCity = rs.getString(4);
+                    DCity = rs.getString(5);
+                    PName = rs.getString(6);
+                }
+                NameTF.setText(Name);
+                AddressTF.setText(Addr);
+                SourceCityTF.setText(PCity);
+                DestinationCityTF.setText(DCity);
+                ProductNameTF.setText(PName);
+                System.out.println("Text Fields Values Set. Press Delete Button to Delete Order.");
+                return true;
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+        return false;
+    }
+
+    private static Connection getDBConnection() {
+        Connection dbConnection = null;
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            dbConnection = DriverManager.getConnection(
+                    DB_CONNECTION, DB_USER, DB_PASSWORD);
+            return dbConnection;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return dbConnection;
+    }
+
+    private void DeleteOrder(String OrderToCancel) throws SQLException {
+        Connection dbConnection = null;
+        Statement statement = null;
+        System.out.println("Order To Be Deleted Is : " + OrderToCancel);
+        String DeleteTableSQL = "delete from consignment where order_id = '"
+                + OrderToCancel + "'";
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            System.out.println(DeleteTableSQL);
+            statement.execute(DeleteTableSQL);
+            System.out.println("Order Successfully Deleted.");
+            String SCC = "SUCCESS : Order Successfully Deleted.";
+            JOptionPane.showMessageDialog(rootPane, SCC);
+            try {
+                PopulateComboBox();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+    }
+
 }

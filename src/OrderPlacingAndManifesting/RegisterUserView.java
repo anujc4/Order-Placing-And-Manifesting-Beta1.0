@@ -5,6 +5,13 @@
  */
 package OrderPlacingAndManifesting;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author anujc
@@ -27,7 +34,6 @@ public class RegisterUserView extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         Lbl1 = new javax.swing.JLabel();
         Lbl2 = new javax.swing.JLabel();
@@ -49,135 +55,49 @@ public class RegisterUserView extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         CancelBtn = new javax.swing.JButton();
         SubmitBtn = new javax.swing.JButton();
+        CLRBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OCM");
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setLocation(new java.awt.Point(300, 100));
+        setMinimumSize(null);
 
         Lbl1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Lbl1.setText("Enter User Details");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipady = 20;
-        getContentPane().add(Lbl1, gridBagConstraints);
 
         Lbl2.setText("User ID");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl2, gridBagConstraints);
 
         Lbl3.setText("First Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl3, gridBagConstraints);
 
         Lbl4.setText("Last Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl4, gridBagConstraints);
 
         Lbl5.setText("Mobile Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl5, gridBagConstraints);
 
         Lbl6.setText("Address");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl6, gridBagConstraints);
 
         Lbl7.setText("City");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl7, gridBagConstraints);
 
         Lbl8.setText("State");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl8, gridBagConstraints);
 
         Lbl10.setText("Priority");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        getContentPane().add(Lbl10, gridBagConstraints);
 
         UIDTF.setText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(UIDTF, gridBagConstraints);
 
         FNTF.setText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(FNTF, gridBagConstraints);
 
         LNTF.setText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        getContentPane().add(LNTF, gridBagConstraints);
 
         MNTF.setText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        getContentPane().add(MNTF, gridBagConstraints);
 
         CTF.setText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        getContentPane().add(CTF, gridBagConstraints);
 
         STF.setText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        getContentPane().add(STF, gridBagConstraints);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        getContentPane().add(jScrollPane1, gridBagConstraints);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        getContentPane().add(jComboBox1, gridBagConstraints);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3"}));
 
         CancelBtn.setText("Cancel");
         CancelBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,12 +110,6 @@ public class RegisterUserView extends javax.swing.JFrame {
                 CancelBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        getContentPane().add(CancelBtn, gridBagConstraints);
 
         SubmitBtn.setText("Submit");
         SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -203,31 +117,170 @@ public class RegisterUserView extends javax.swing.JFrame {
                 SubmitBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
-        getContentPane().add(SubmitBtn, gridBagConstraints);
+
+        CLRBtn.setText("Clear");
+        CLRBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CLRBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(UIDTF))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Lbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LNTF)))
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FNTF)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CLRBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lbl6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Lbl8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(CTF)
+                            .addComponent(STF))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Lbl10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Lbl5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(MNTF, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FNTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LNTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MNTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lbl6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(STF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lbl10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CLRBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
-        // TODO add your handling code here:
+        String s1,s2,s3,s4,s5,s6,s7,s8="ERROR : Fields Cannot Be Left Blank.",s9="[0-9]+",s10="ERROR : Mobile Number Can Only Take Numbers.";
+        int ch;
+        s1=UIDTF.getText();
+        s2=FNTF.getText();
+        s3=LNTF.getText();
+        s4=MNTF.getText();
+        s5=jTextArea1.getText();
+        s6=CTF.getText();
+        s7=STF.getText();
+        ch=jComboBox1.getSelectedIndex();
+        if(s1.isEmpty()||s2.isEmpty()||s3.isEmpty()||s4.isEmpty()||s5.isEmpty()||s6.isEmpty()||s7.isEmpty())
+        {
+            JOptionPane.showMessageDialog(rootPane, s8);
+        }
+        else if(s4.matches(s9)==false)
+        {
+            JOptionPane.showMessageDialog(rootPane, s10);
+        }
+        else
+        {
+            try {
+            InsertUser(s1,s2,s3,s4,s5,s6,s7,++ch);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        }
     }//GEN-LAST:event_SubmitBtnActionPerformed
 
     private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
+        new MainView();
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_CancelBtnActionPerformed
 
     private void CancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelBtnMouseClicked
-        new MainView();
-        dispose();
+
     }//GEN-LAST:event_CancelBtnMouseClicked
+
+    private void CLRBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CLRBtnActionPerformed
+        UIDTF.setText(null);
+        FNTF.setText(null);
+        LNTF.setText(null);
+        MNTF.setText(null);
+        jTextArea1.setText(null);
+        CTF.setText(null);
+        STF.setText(null);
+    }//GEN-LAST:event_CLRBtnActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CLRBtn;
     private javax.swing.JTextField CTF;
     private javax.swing.JButton CancelBtn;
     private javax.swing.JTextField FNTF;
@@ -249,4 +302,59 @@ public class RegisterUserView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-}
+    private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_USER = "is020";
+    private static final String DB_PASSWORD = "is020";
+    private void InsertUser(String s1, String s2, String s3, String s4, String s5, String s6, String s7, int ch) throws SQLException{
+        Connection dbConnection = null;
+        Statement statement = null;
+        String insertTableSQL = "INSERT INTO customer VALUES ('"
+                + s1 + "','" 
+                + s2 + "','"
+                + s3 + "',"
+                + s4 + ",'"
+                + s5 + "','"
+                + s6 + "','"
+                + s7 + "',"
+                + ch + ")";
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            System.out.println(insertTableSQL);
+            statement.executeUpdate(insertTableSQL);
+            System.out.println("Record is inserted into DBUSER table!");
+            String success = "SUCCESS : User Created Successfully.";
+            JOptionPane.showMessageDialog(rootPane, success);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+       }
+    }
+     private static Connection getDBConnection() {
+        Connection dbConnection = null;
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            dbConnection = DriverManager.getConnection(
+                    DB_CONNECTION, DB_USER, DB_PASSWORD);
+            return dbConnection;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return dbConnection;
+    }
+                
+    }
+

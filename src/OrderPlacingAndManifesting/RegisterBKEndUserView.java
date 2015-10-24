@@ -5,6 +5,12 @@
  */
 package OrderPlacingAndManifesting;
 
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Anuj Chandra
@@ -28,37 +34,89 @@ public class RegisterBKEndUserView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField("",30);
-        jTextField2 = new javax.swing.JTextField("",30);
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField("",30);
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Lbl1 = new javax.swing.JLabel();
+        Lbl2 = new javax.swing.JLabel();
+        UserIDTF = new javax.swing.JTextField();
+        PwdTF = new javax.swing.JTextField();
+        Lbl3 = new javax.swing.JLabel();
+        CPwdTF = new javax.swing.JTextField("",30);
+        CreateUserBtn = new javax.swing.JButton();
+        CancelBtn = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        CreateUserItem = new javax.swing.JMenuItem();
+        BackItem = new javax.swing.JMenuItem();
+        ExitItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("OCM");
+        setLocation(new java.awt.Point(300, 100));
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
-        jLabel1.setText("Enter User ID");
+        Lbl1.setText("Enter User ID");
 
-        jLabel2.setText("Enter Password");
+        Lbl2.setText("Enter Password");
 
-        jLabel3.setText("Confirm Password");
+        Lbl3.setText("Confirm Password");
 
-        jButton1.setText("Create User");
-        jButton1.setMaximumSize(new java.awt.Dimension(150, 23));
-        jButton1.setMinimumSize(new java.awt.Dimension(150, 23));
-        jButton1.setPreferredSize(new java.awt.Dimension(150, 23));
-
-        jButton2.setText("Cancel");
-        jButton2.setMaximumSize(new java.awt.Dimension(150, 23));
-        jButton2.setMinimumSize(new java.awt.Dimension(150, 23));
-        jButton2.setPreferredSize(new java.awt.Dimension(150, 23));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CreateUserBtn.setText("Create User");
+        CreateUserBtn.setMaximumSize(new java.awt.Dimension(150, 23));
+        CreateUserBtn.setMinimumSize(new java.awt.Dimension(150, 23));
+        CreateUserBtn.setPreferredSize(new java.awt.Dimension(150, 23));
+        CreateUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CreateUserBtnActionPerformed(evt);
             }
         });
+
+        CancelBtn.setText("Cancel");
+        CancelBtn.setMaximumSize(new java.awt.Dimension(150, 23));
+        CancelBtn.setMinimumSize(new java.awt.Dimension(150, 23));
+        CancelBtn.setPreferredSize(new java.awt.Dimension(150, 23));
+        CancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBtnActionPerformed(evt);
+            }
+        });
+
+        BackBtn.setText("Go Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+
+        jMenu1.setText("File");
+
+        CreateUserItem.setText("Create User");
+        CreateUserItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateUserItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(CreateUserItem);
+
+        BackItem.setText("Back");
+        BackItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(BackItem);
+
+        ExitItem.setText("Exit");
+        ExitItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ExitItem);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,62 +126,175 @@ public class RegisterBKEndUserView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(Lbl1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(UserIDTF))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(Lbl2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PwdTF))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(Lbl3)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CPwdTF))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CreateUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Lbl1)
+                    .addComponent(UserIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Lbl2)
+                    .addComponent(PwdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Lbl3)
+                    .addComponent(CPwdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                    .addComponent(CancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreateUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBtnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_CancelBtnActionPerformed
+
+    private void CreateUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserBtnActionPerformed
+        String s1, s2, s3, S_Empty = "ERROR : Fields cannot be left blank.", s_er = "ERROR : Passwords Do Not Match.";
+        s1 = UserIDTF.getText();
+        s2 = PwdTF.getText();
+        s3 = CPwdTF.getText();
+        if (s1.isEmpty() || s2.isEmpty() || s3.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, S_Empty);
+            return;
+        }
+        if (s2.equals(s3)) {
+            System.out.println("Success Match");
+            InsertUser(s1, s2);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, s_er);
+        }
+    }//GEN-LAST:event_CreateUserBtnActionPerformed
+
+    private void CreateUserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserItemActionPerformed
+        String s1, s2, s3, S_Empty = "ERROR : Fields cannot be left blank.", s_er = "ERROR : Passwords Do Not Match.";
+        s1 = UserIDTF.getText();
+        s2 = PwdTF.getText();
+        s3 = CPwdTF.getText();
+        if (s1.isEmpty() || s2.isEmpty() || s3.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, S_Empty);
+            
+        }
+        if (s2.equals(s3)) {
+            System.out.println("Success Match");
+            InsertUser(s1, s2);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, s_er);
+        }
+    }//GEN-LAST:event_CreateUserItemActionPerformed
+
+    private void ExitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitItemActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_ExitItemActionPerformed
+
+    private void BackItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackItemActionPerformed
         new LoginView();
-        dispose();   
-    }//GEN-LAST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_BackItemActionPerformed
+
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+       new LoginView();
+       dispose();
+    }//GEN-LAST:event_BackBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton BackBtn;
+    private javax.swing.JMenuItem BackItem;
+    private javax.swing.JTextField CPwdTF;
+    private javax.swing.JButton CancelBtn;
+    private javax.swing.JButton CreateUserBtn;
+    private javax.swing.JMenuItem CreateUserItem;
+    private javax.swing.JMenuItem ExitItem;
+    private javax.swing.JLabel Lbl1;
+    private javax.swing.JLabel Lbl2;
+    private javax.swing.JLabel Lbl3;
+    private javax.swing.JTextField PwdTF;
+    private javax.swing.JTextField UserIDTF;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+    private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_USER = "is020";
+    private static final String DB_PASSWORD = "is020";
+
+    private void InsertUser(String s1, String s2) {
+        try {
+            InsertDBUser(s1,s2);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void InsertDBUser(String uid, String pwd) throws SQLException {
+        Connection dbConnection = null;
+        Statement statement = null;
+        String insertTableSQL = "INSERT INTO BKUser VALUES ('" + uid + "','" + pwd + "')" ;
+        try {
+            dbConnection = getDBConnection();
+            statement = dbConnection.createStatement();
+            System.out.println(insertTableSQL);
+            // execute insert SQL stetement
+            statement.executeUpdate(insertTableSQL);
+            System.out.println("Record is inserted into DBUSER table!");
+            String ss = "BackEnd User Successfully Generated.";
+            JOptionPane.showMessageDialog(null, ss);
+            
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+       }
+    }
+    private static Connection getDBConnection() {
+        Connection dbConnection = null;
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            dbConnection = DriverManager.getConnection(
+                    DB_CONNECTION, DB_USER, DB_PASSWORD);
+            return dbConnection;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return dbConnection;
+    }
 }

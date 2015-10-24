@@ -5,6 +5,9 @@
  */
 package OrderPlacingAndManifesting;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,13 +34,14 @@ public class MainView extends javax.swing.JFrame {
     private void initComponents() {
 
         Lbl1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        AddUserBtn = new javax.swing.JButton();
+        CreateOrderBtn = new javax.swing.JButton();
+        CancelOrderBtn = new javax.swing.JButton();
+        ViewManifestBtn = new javax.swing.JButton();
+        LogoutBtn = new javax.swing.JButton();
+        Lbl2 = new javax.swing.JLabel();
+        AddProductsBtn = new javax.swing.JButton();
+        ChkBtn = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -45,61 +49,71 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OCM");
+        setLocation(new java.awt.Point(300, 100));
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
         Lbl1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         Lbl1.setText("WELCOME");
 
-        jButton1.setText("Add Users");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        AddUserBtn.setText("Add Users");
+        AddUserBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                AddUserBtnMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Create an Order");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        CreateOrderBtn.setText("Create an Order");
+        CreateOrderBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                CreateOrderBtnMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CreateOrderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CreateOrderBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Cancel an Order");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        CancelOrderBtn.setText("Cancel an Order");
+        CancelOrderBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                CancelOrderBtnMouseClicked(evt);
             }
         });
 
-        jButton4.setText("View Manifest");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        ViewManifestBtn.setText("View Manifest");
+        ViewManifestBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                ViewManifestBtnMouseClicked(evt);
             }
         });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        ViewManifestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                ViewManifestBtnActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Logout");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-        });
-
-        jLabel1.setText("Order Creating and Manifesting");
-
-        jButton6.setText("Add Products");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        LogoutBtn.setText("Logout");
+        LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                LogoutBtnActionPerformed(evt);
+            }
+        });
+
+        Lbl2.setText("Order Creating and Manifesting");
+
+        AddProductsBtn.setText("Add Products");
+        AddProductsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddProductsBtnActionPerformed(evt);
+            }
+        });
+
+        ChkBtn.setText("Check Database Connection");
+        ChkBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkBtnActionPerformed(evt);
             }
         });
 
@@ -136,16 +150,18 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(Lbl1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ChkBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Lbl2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(50, Short.MAX_VALUE))))
+                            .addComponent(AddUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddProductsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CreateOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CancelOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ViewManifestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(42, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,51 +169,52 @@ public class MainView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Lbl1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(Lbl2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(AddProductsBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(AddUserBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(CreateOrderBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(CancelOrderBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(ViewManifestBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addComponent(LogoutBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(ChkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jButton5MouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void AddUserBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddUserBtnMouseClicked
         new RegisterUserView();
         dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_AddUserBtnMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void ViewManifestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewManifestBtnActionPerformed
+        new ViewManifestView();
+        dispose();
+    }//GEN-LAST:event_ViewManifestBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void CreateOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateOrderBtnActionPerformed
         new CreateOrderView1();
-    }//GEN-LAST:event_jButton2MouseClicked
+        dispose();
+    }//GEN-LAST:event_CreateOrderBtnActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void CreateOrderBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateOrderBtnMouseClicked
+        new CreateOrderView1();
+        dispose();
+    }//GEN-LAST:event_CreateOrderBtnMouseClicked
+
+    private void CancelOrderBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelOrderBtnMouseClicked
         
         new CancelOrderView();   
         dispose();
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_CancelOrderBtnMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         String S = "Order Creating and Manifesting. A DBMS Project Created By :\nAnuj Chandra\nArchana Chokhani\nAbhijit Prakash\nAbhishek Raj" ;   
@@ -205,28 +222,64 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        System.exit(0);
+        new LoginView();
+        dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void ViewManifestBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewManifestBtnMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_ViewManifestBtnMouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void AddProductsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductsBtnActionPerformed
         new AddProductsView();
         dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_AddProductsBtnActionPerformed
+
+    private void ChkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkBtnActionPerformed
+        String ss = "Connection Established", ff = "Connection Failed.";
+        System.out.println("-------- Oracle JDBC Connection Testing ------");
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver Undetected. Install JDBC Driver.");
+            e.printStackTrace();
+            return;
+        }
+        System.out.println("Oracle JDBC Driver Registered!");
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521:xe", "is020",
+                    "is020");
+        } catch (SQLException e) {
+            System.out.println("Connection Failed!");
+            e.printStackTrace();
+            return;
+        }
+        if (connection != null) {
+            ChkBtn.setText(ss);
+        } else {
+            ChkBtn.setText(ff);
+        }
+    
+    }//GEN-LAST:event_ChkBtnActionPerformed
+
+    private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
+      new LoginView();
+      dispose();
+    }//GEN-LAST:event_LogoutBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddProductsBtn;
+    private javax.swing.JButton AddUserBtn;
+    private javax.swing.JButton CancelOrderBtn;
+    private javax.swing.JToggleButton ChkBtn;
+    private javax.swing.JButton CreateOrderBtn;
     private javax.swing.JLabel Lbl1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel Lbl2;
+    private javax.swing.JButton LogoutBtn;
+    private javax.swing.JButton ViewManifestBtn;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

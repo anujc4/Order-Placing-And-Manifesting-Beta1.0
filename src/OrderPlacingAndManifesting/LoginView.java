@@ -4,21 +4,27 @@
  * and open the template in the editor.
  */
 package OrderPlacingAndManifesting;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author anujc
  */
-public class LoginView extends javax.swing.JFrame    {
+public class LoginView extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginView
      */
     public LoginView() {
         initComponents();
+        setVisible(true);
         OracleJDBCConnec();
     }
 
@@ -30,15 +36,18 @@ public class LoginView extends javax.swing.JFrame    {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         WelcomeLbl = new javax.swing.JLabel();
         UserIDLbl = new javax.swing.JLabel();
         PasswordLbl = new javax.swing.JLabel();
-        UserIDTF = new javax.swing.JTextField("",10);
-        PasswordTF = new javax.swing.JTextField("",10);
+        UserIDTF = new javax.swing.JTextField();
         RegisterBtn = new javax.swing.JButton();
         LoginBtn = new javax.swing.JButton();
+        PwdTF = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        AdmKeyTF = new javax.swing.JTextField();
+        GoBtn = new javax.swing.JButton();
+        ExtBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -46,77 +55,54 @@ public class LoginView extends javax.swing.JFrame    {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OPM");
         setBounds(new java.awt.Rectangle(0, 0, 300, 300));
-        setPreferredSize(new java.awt.Dimension(500, 400));
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setLocation(new java.awt.Point(400, 100));
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
         WelcomeLbl.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         WelcomeLbl.setText("Welcome");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        getContentPane().add(WelcomeLbl, gridBagConstraints);
 
         UserIDLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         UserIDLbl.setText("User ID     ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(UserIDLbl, gridBagConstraints);
 
         PasswordLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         PasswordLbl.setText("Password     ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(PasswordLbl, gridBagConstraints);
 
         UserIDTF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         UserIDTF.setText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        getContentPane().add(UserIDTF, gridBagConstraints);
-
-        PasswordTF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(PasswordTF, gridBagConstraints);
 
         RegisterBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RegisterBtn.setText("Register");
-        RegisterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RegisterBtnMouseClicked(evt);
-            }
-        });
+        RegisterBtn.setEnabled(false);
         RegisterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegisterBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        getContentPane().add(RegisterBtn, gridBagConstraints);
 
         LoginBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LoginBtn.setText("Login");
-        LoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                LoginBtnMouseClicked(evt);
-            }
-        });
         LoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        getContentPane().add(LoginBtn, gridBagConstraints);
+
+        jLabel1.setText("Enter Admin Key To Register");
+
+        GoBtn.setText("GO");
+        GoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GoBtnActionPerformed(evt);
+            }
+        });
+
+        ExtBtn.setText("EXIT");
+        ExtBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExtBtnActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -132,31 +118,118 @@ public class LoginView extends javax.swing.JFrame    {
 
         setJMenuBar(jMenuBar1);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(WelcomeLbl)
+                        .addGap(373, 433, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(UserIDLbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(UserIDTF))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PasswordLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PwdTF))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(AdmKeyTF)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GoBtn))
+                            .addComponent(ExtBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(RegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(LoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(WelcomeLbl)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserIDLbl)
+                    .addComponent(UserIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PasswordLbl)
+                    .addComponent(PwdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(AdmKeyTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GoBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoginBtn)
+                    .addComponent(RegisterBtn))
+                .addGap(18, 18, 18)
+                .addComponent(ExtBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterBtnActionPerformed
-        // TODO add your handling code here:
-        
+      new RegisterBKEndUserView();
+      dispose();
+
     }//GEN-LAST:event_RegisterBtnActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-             // TODO add your handling code here:
+        String s1 = UserIDTF.getText();
+        char[] s2 = PwdTF.getPassword();
+        String ERR = "";
+        if(s1.isEmpty()) 
+        {
+            ERR = "ERROR : User ID Field Cannot Be Left Blank";
+            JOptionPane.showMessageDialog(rootPane, ERR);
+        }
+        else if(s2.toString().isEmpty())
+        {
+            ERR = "ERROR : Password Cannot Be Left Blank.";
+            JOptionPane.showMessageDialog(rootPane, ERR);
+        }
+        else{
+        try {
+            CheckInfo(s1, s2);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        }
     }//GEN-LAST:event_LoginBtnActionPerformed
-
-    private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
-        new MainView();
-        dispose();
-    }//GEN-LAST:event_LoginBtnMouseClicked
-
-    private void RegisterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegisterBtnMouseClicked
-           new RegisterBKEndUserView();
-           dispose();
-    }//GEN-LAST:event_RegisterBtnMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void GoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoBtnActionPerformed
+        String s1 = "ANUJ" , s2 = AdmKeyTF.getText() , fail = "ERROR : Admin Key Not Correct." , succ = "SUCCESS : Admin Key Correct. \nPlease Continue to Register as Back End User.";
+        if(s1.matches(s2)){
+            RegisterBtn.setEnabled(true);
+            JOptionPane.showMessageDialog(rootPane, succ);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, fail);
+        }
+    }//GEN-LAST:event_GoBtnActionPerformed
+
+    private void ExtBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExtBtnActionPerformed
+      System.exit(0);
+    }//GEN-LAST:event_ExtBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,56 +267,110 @@ public class LoginView extends javax.swing.JFrame    {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AdmKeyTF;
+    private javax.swing.JButton ExtBtn;
+    private javax.swing.JButton GoBtn;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JLabel PasswordLbl;
-    private javax.swing.JTextField PasswordTF;
+    private javax.swing.JPasswordField PwdTF;
     private javax.swing.JButton RegisterBtn;
     private javax.swing.JLabel UserIDLbl;
     private javax.swing.JTextField UserIDTF;
     private javax.swing.JLabel WelcomeLbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
+    private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_USER = "is020";
+    private static final String DB_PASSWORD = "is020";
 
     private void OracleJDBCConnec() {
         System.out.println("-------- Oracle JDBC Connection Testing ------");
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver Undetected. Install JDBC Driver.");
+            e.printStackTrace();
+            return;
+        }
+        System.out.println("Oracle JDBC Driver Registered!");
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@localhost:1521:xe", "is020",
+                    "is020");
+        } catch (SQLException e) {
+            System.out.println("Connection Failed!");
+            e.printStackTrace();
+            return;
+        }
+        if (connection != null) {
+            System.out.println("Connection Established");
+        } else {
+            System.out.println("Failed to make connection!");
+        }
+    }
 
-		try {
+    private void CheckInfo(String s1, char[] s2) throws SQLException {
+        Connection dbConnection = null;
+        Statement statement = null;
+        String selectTableSQL = "select password from bkuser where user_id='"
+                + s1 + "'";
+        String er_notexist = "ERROR : No Such User Exists. Please Register.";
+        int i = 0;
+        try {
+            dbConnection = getDBConnection();
+            System.out.println("Connection Successful");
+            statement = dbConnection.createStatement();
+            System.out.println(selectTableSQL);
+            ResultSet rs = statement.executeQuery(selectTableSQL);
+            
+             if (rs.next() == false) {
+                JOptionPane.showMessageDialog(rootPane, er_notexist);
+                
+             }
+             
+            rs = statement.executeQuery(selectTableSQL);
+            if(rs.next()) {
+                String pwd = rs.getString("password");
+                char[] password = pwd.toCharArray();
+                if (Arrays.equals(s2, password)) {
+                    new MainView();
+                    dispose();
+                } else {
+                    String er = "ERROR : Incorrect Password.";
+                    JOptionPane.showMessageDialog(rootPane, er);
+                }
+            }         
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+    }
 
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		} catch (ClassNotFoundException e) {
-
-			System.out.println("Where is your Oracle JDBC Driver?");
-			e.printStackTrace();
-			return;
-
-		}
-
-		System.out.println("Oracle JDBC Driver Registered!");
-
-		Connection connection = null;
-
-		try {
-
-			connection = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:xe", "is020",
-					"is020");
-
-		} catch (SQLException e) {
-
-			System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-			return;
-
-		}
-
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		}
-	
+    private static Connection getDBConnection() {
+        Connection dbConnection = null;
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            dbConnection = DriverManager.getConnection(DB_CONNECTION, DB_USER,
+                    DB_PASSWORD);
+            return dbConnection;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return dbConnection;
     }
 }
